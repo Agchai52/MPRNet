@@ -21,8 +21,8 @@ def psnr(img1, img2):
 # deblu_root = './test'  # _all_deblurred'
 # sharp_root = './datasets/Kohler_multi4'  # _all'
 
-deblu_root = './res_GOPRO_NB'
-sharp_root = './datasets/test_poisson'
+deblu_root = './res_GOPRO'
+sharp_root = './datasets/test_multi_clear'
 
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
@@ -70,7 +70,7 @@ for n, item in enumerate(sharp_list):
         psnr_n = psnr(img_deblu, img_sharp)
         ssim_n = ssim(img_deblu / 255, img_sharp / 255, gaussian_weights=True, multichannel=True,
                       use_sample_covariance=False, sigma=1.5)
-        if name_sharp[-3:] == "001":
+        if name_sharp[-6:-3] == "001":
             print('PSNR=%f, SSMI=%f', (psnr_n, ssim_n))
 
         sharp = Image.fromarray(np.uint8(img_sharp))
