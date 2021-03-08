@@ -5,7 +5,7 @@ import os
 import matplotlib.pyplot as plt
 import torch
 import piq
-
+from PIL import Image
 from skimage.measure import compare_ssim as ssim
 
 
