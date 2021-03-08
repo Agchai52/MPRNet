@@ -54,8 +54,9 @@ for n, item in enumerate(sharp_list):
         img_deblu = cv2.imread(path_deblu, cv2.IMREAD_COLOR).astype(np.float)
         img_sharp = cv2.imread(path_sharp, cv2.IMREAD_COLOR).astype(np.float)
 
-        _, _, img_sharp = np.split(img_sharp, 3, axis=1)
+        img_blur, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
+        cv2.imwrite('img_blur.png', img_blur)
         #cv2.imwrite('img_deblu.png', img_deblu)
         #cv2.imwrite('img_sharp.png', img_sharp)
 
