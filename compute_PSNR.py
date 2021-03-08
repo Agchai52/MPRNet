@@ -8,14 +8,15 @@ import piq
 import torchvision.transforms.functional as TF
 from PIL import Image
 from skimage.measure import compare_ssim as ssim
+from skimage.measure import compare_psnr as psnr
 
 
-def psnr(img1, img2):
-    mse = np.mean((img1 - img2) ** 2)
-    if mse == 0:
-        return 100
-    PIXEL_MAX = 255.0
-    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+# def psnr(img1, img2):
+#     mse = np.mean((img1 - img2) ** 2)
+#     if mse == 0:
+#         return 100
+#     PIXEL_MAX = 255.0
+#     return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
 
 
 # deblu_root = './test'  # _all_deblurred'
@@ -55,9 +56,9 @@ for n, item in enumerate(sharp_list):
 
         _, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
-        cv2.imwrite('img_deblu.png', img_deblu)
-        cv2.imwrite('img_sharp.png', img_sharp)
-        exit()
+        #cv2.imwrite('img_deblu.png', img_deblu)
+        #cv2.imwrite('img_sharp.png', img_sharp)
+
 
         img_sharp = img_sharp[:, :, [2, 1, 0]]
         img_deblu = img_deblu[:, :, [2, 1, 0]]
@@ -77,6 +78,8 @@ for n, item in enumerate(sharp_list):
 
         if name_sharp[-7:-4] == "001":
             print(name_sharp, (psnr_n, ssim_n))
+
+        exit()
 
         sharp = Image.fromarray(np.uint8(img_sharp))
         deblu = Image.fromarray(np.uint8(img_deblu))
