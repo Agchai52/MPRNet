@@ -62,7 +62,7 @@ img_multiple_of = 8
 
 for file_ in files:
     img = Image.open(file_).convert('RGB')
-    img_array = numpy.asarray(img)
+    img_array = np.asarray(img)
     _, blur_array, _ = np.split(img_array, 3, axis=1)
     blur = PIL.Image.fromarray(np.uint8(blur_array))
     input_ = TF.to_tensor(blur).unsqueeze(0).cuda()
