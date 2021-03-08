@@ -55,8 +55,8 @@ for n, item in enumerate(sharp_list):
 
         _, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
-        cv2.imwrite('img_deblu', img_deblu)
-        cv2.imwrite('img_sharp', img_sharp)
+        cv2.imwrite('img_deblu.png', img_deblu)
+        cv2.imwrite('img_sharp.png', img_sharp)
         exit()
 
         img_sharp = img_sharp[:, :, [2, 1, 0]]
