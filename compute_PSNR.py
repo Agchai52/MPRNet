@@ -72,10 +72,11 @@ for n, item in enumerate(sharp_list):
         if name_sharp[-3:] == "001":
             print('PSNR=%f, SSMI=%f', (psnr_n, ssim_n))
 
-        sharp = Image.fromarray(np.uint8(img_sharp / 255.0))
-        deblu = Image.fromarray(np.uint8(img_deblu / 255.0))
+        sharp = Image.fromarray(np.uint8(img_sharp))
+        deblu = Image.fromarray(np.uint8(img_deblu))
         sharp_ts = TF.to_tensor(sharp).unsqueeze(0)
         deblu_ts = TF.to_tensor(deblu).unsqueeze(0)
+        sharp_ts, deblu_ts = sharp_ts/255.0, deblu_ts/255.0
 
         vif_n = piq.vif_p(deblu_ts, sharp_ts)
         vsi_n = piq.vsi(deblu_ts, sharp_ts)
