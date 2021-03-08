@@ -64,7 +64,7 @@ for file_ in files:
     img = Image.open(file_).convert('RGB')
     img_array = np.asarray(img)
     _, blur_array, _ = np.split(img_array, 3, axis=1)
-    blur = PIL.Image.fromarray(np.uint8(blur_array))
+    blur = Image.fromarray(np.uint8(blur_array))
     input_ = TF.to_tensor(blur).unsqueeze(0).cuda()
 
     # Pad the input if not_multiple_of 8
