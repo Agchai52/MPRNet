@@ -7,8 +7,8 @@ import torch
 import piq
 import torchvision.transforms.functional as TF
 from PIL import Image
-from skimage.measure import compare_ssim as ssim
-from skimage.measure import compare_psnr as psnr
+from skimage.metrics import structural_similarity as ssim
+from skimage.metrics import peak_signal_noise_ratio as psnr
 
 
 # def psnr(img1, img2):
@@ -59,7 +59,6 @@ for n, item in enumerate(sharp_list):
         #cv2.imwrite('img_deblu.png', img_deblu)
         #cv2.imwrite('img_sharp.png', img_sharp)
 
-
         img_sharp = img_sharp[:, :, [2, 1, 0]]
         img_deblu = img_deblu[:, :, [2, 1, 0]]
 
@@ -72,7 +71,7 @@ for n, item in enumerate(sharp_list):
         # plt.title('denoise')
         # plt.show()
 
-        psnr_n = psnr(img_deblu, img_sharp)
+        psnr_n = psnr(img_sharp, img_deblu, data_range=255)
         ssim_n = ssim(img_deblu / 255, img_sharp / 255, gaussian_weights=True, multichannel=True,
                       use_sample_covariance=False, sigma=1.5)
 
