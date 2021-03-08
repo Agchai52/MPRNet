@@ -55,6 +55,10 @@ for n, item in enumerate(sharp_list):
 
         _, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
+        cv2.imwrite('img_deblu', img_deblu)
+        cv2.imwrite('img_sharp', img_sharp)
+        exit()
+
         img_sharp = img_sharp[:, :, [2, 1, 0]]
         img_deblu = img_deblu[:, :, [2, 1, 0]]
 
@@ -72,7 +76,7 @@ for n, item in enumerate(sharp_list):
                       use_sample_covariance=False, sigma=1.5)
 
         if name_sharp[-7:-4] == "001":
-            print('PSNR=%f, SSMI=%f', (psnr_n, ssim_n))
+            print(name_sharp, (psnr_n, ssim_n))
 
         sharp = Image.fromarray(np.uint8(img_sharp))
         deblu = Image.fromarray(np.uint8(img_deblu))
