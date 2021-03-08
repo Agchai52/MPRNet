@@ -27,7 +27,7 @@ sharp_root = './datasets/test_poisson'
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
 sharp_list = sorted(sharp_list, key=str.lower)
-print(sharp_list)
+# print(sharp_list)
 
 num_imgs = len(deblu_list)
 PSNR_all = []
