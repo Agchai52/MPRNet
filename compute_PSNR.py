@@ -69,7 +69,8 @@ for n, item in enumerate(sharp_list):
         psnr_n = psnr(img_deblu, img_sharp)
         ssim_n = ssim(img_deblu / 255, img_sharp / 255, gaussian_weights=True, multichannel=True,
                       use_sample_covariance=False, sigma=1.5)
-        print('PSNR=%f, SSMI=%f', (psnr_n, ssim_n))
+        if name_sharp[-3:] == "001":
+            print('PSNR=%f, SSMI=%f', (psnr_n, ssim_n))
 
         sharp = Image.fromarray(np.uint8(img_sharp)) / 255.0
         deblu = Image.fromarray(np.uint8(img_deblu)) / 255.0
