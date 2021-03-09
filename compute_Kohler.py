@@ -10,8 +10,8 @@ from PIL import Image
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 
-deblu_root = './res_kohler1/'
-sharp_root = './datasets/Kohler_multi1/'
+deblu_root = './res_kohler2/'
+sharp_root = './datasets/Kohler_multi2/'
 
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
@@ -89,6 +89,7 @@ for n, item in enumerate(sharp_list):
             haar_k.append(haar_n)
             count_k += 1
         elif count_k == 198:
+            print(name_deblu)
             psnr_k.append(psnr_n)
             ssim_k.append(ssim_n)
             vif_k.append(vif_n)
