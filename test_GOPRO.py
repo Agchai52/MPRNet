@@ -4,6 +4,7 @@ import torch.nn.functional as F
 import torchvision.transforms.functional as TF
 from PIL import Image
 import os
+import time
 from runpy import run_path
 from skimage import img_as_ubyte
 from collections import OrderedDict
@@ -14,8 +15,8 @@ import argparse
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
-parser.add_argument('--input_dir', default='./datasets/test_full/', type=str, help='Input images')
-parser.add_argument('--result_dir', default='./res_GOPRO/', type=str, help='Directory for results')
+parser.add_argument('--input_dir', default='./datasets/test_poisson/', type=str, help='Input images')
+parser.add_argument('--result_dir', default='./res_GOPRONB/', type=str, help='Directory for results')
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
@@ -59,6 +60,7 @@ load_checkpoint(model, weights)
 model.eval()
 
 img_multiple_of = 8
+start_time = time.time()
 
 for file_ in files:
     img = Image.open(file_).convert('RGB')
@@ -89,4 +91,6 @@ for file_ in files:
     f = os.path.splitext(os.path.split(file_)[-1])[0]
     save_img((os.path.join(out_dir, f+'.png')), restored)
 
-print("Files saved at {out_dir}")
+total_time = time.time() - start_time
+ave_time = total_time / len(files)
+print("ave Processing time = ", ave_time)
