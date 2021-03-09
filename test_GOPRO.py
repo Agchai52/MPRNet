@@ -14,8 +14,8 @@ import argparse
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
-parser.add_argument('--input_dir', default='./datasets/test_kohler/', type=str, help='Input images')
-parser.add_argument('--result_dir', default='./res_kohler/', type=str, help='Directory for results')
+parser.add_argument('--input_dir', default='./datasets/test_full/', type=str, help='Input images')
+parser.add_argument('--result_dir', default='./res_GOPRO/', type=str, help='Directory for results')
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
@@ -63,7 +63,8 @@ img_multiple_of = 8
 for file_ in files:
     img = Image.open(file_).convert('RGB')
     img_array = np.asarray(img)
-    _, blur_array, _ = np.split(img_array, 3, axis=1)
+    #_, blur_array, _ = np.split(img_array, 3, axis=1)
+    blur_array, _ = np.split(img_array, 3, axis=1)
     blur = Image.fromarray(np.uint8(blur_array))
     input_ = TF.to_tensor(blur).unsqueeze(0).cuda()
 
