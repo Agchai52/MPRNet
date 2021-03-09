@@ -23,7 +23,7 @@ from skimage.metrics import peak_signal_noise_ratio as psnr
 # sharp_root = './datasets/Kohler_multi4'  # _all'
 
 deblu_root = './res_GOPRO'
-sharp_root = './datasets/test_multi_clear'
+sharp_root = './datasets/test_full'
 
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
@@ -78,8 +78,6 @@ for n, item in enumerate(sharp_list):
 
         if name_sharp[-7:-4] == "001":
             print(name_sharp, (psnr_n, ssim_n))
-
-        exit()
 
         sharp = Image.fromarray(np.uint8(img_sharp))
         deblu = Image.fromarray(np.uint8(img_deblu))
