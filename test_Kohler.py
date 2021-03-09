@@ -15,8 +15,8 @@ import argparse
 import numpy as np
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
-parser.add_argument('--input_dir', default='./datasets/Kohler_multi3/', type=str, help='Input images')
-parser.add_argument('--result_dir', default='./res_kohler3/', type=str, help='Directory for results')
+parser.add_argument('--input_dir', default='./datasets/Kohler_multi4/', type=str, help='Input images')
+parser.add_argument('--result_dir', default='./res_kohler4/', type=str, help='Directory for results')
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
