@@ -22,7 +22,7 @@ from skimage.metrics import peak_signal_noise_ratio as psnr
 # deblu_root = './test'  # _all_deblurred'
 # sharp_root = './datasets/Kohler_multi4'  # _all'
 
-deblu_root = './res_GOPRONB'
+deblu_root = './res_GOPRO_NB'
 sharp_root = './datasets/test_sharpm'
 
 deblu_list = os.listdir(deblu_root)
