@@ -10,13 +10,12 @@ from PIL import Image
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 
-deblu_root = './res_kohler'
-sharp_root = './datasets/Kohler_multi1'
+deblu_root = './res_kohler1/'
+sharp_root = './datasets/Kohler_multi1/'
 
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
 sharp_list = sorted(sharp_list, key=str.lower)
-# print(sharp_list)
 
 num_imgs = len(deblu_list)
 PSNR_all = []
@@ -39,8 +38,9 @@ Haar_all = []
 for n, item in enumerate(sharp_list):
     if not item.startswith('.'):
 
+        name = item[:2]
         name_sharp = sharp_list[n]
-        name_deblu = name_sharp
+        name_deblu = item[:2] + "0001.png"
 
         path_deblu = os.path.join(deblu_root, name_deblu)
         path_sharp = os.path.join(sharp_root, name_sharp)
@@ -48,7 +48,7 @@ for n, item in enumerate(sharp_list):
         img_deblu = cv2.imread(path_deblu, cv2.IMREAD_COLOR).astype(np.float)
         img_sharp = cv2.imread(path_sharp, cv2.IMREAD_COLOR).astype(np.float)
 
-        # img_blur, img_sharp = np.split(img_sharp, 2, axis=1)
+        _, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
         # cv2.imwrite('img_blur.png', img_blur)
         #cv2.imwrite('img_deblu.png', img_deblu)
@@ -69,9 +69,6 @@ for n, item in enumerate(sharp_list):
         psnr_n = psnr(img_sharp, img_deblu, data_range=255)
         ssim_n = ssim(img_deblu / 255, img_sharp / 255, gaussian_weights=True, multichannel=True,
                       use_sample_covariance=False, sigma=1.5)
-
-        if name_sharp[-7:-4] == "001":
-            print(name_sharp, (psnr_n, ssim_n))
 
         sharp = Image.fromarray(np.uint8(img_sharp))
         deblu = Image.fromarray(np.uint8(img_deblu))
@@ -134,9 +131,13 @@ for n, item in enumerate(sharp_list):
 # print("ave Haar = ", Haar)
 
 # For Kohler dataset
-#
+print(kernel_p)
 print("ave PSNR = ", np.mean(kernel_p))
+print(kernel_s)
 print("ave SSIM = ", np.mean(kernel_s))
+print(kernel_f)
 print("ave VIF = ", np.mean(kernel_f))
+print(kernel_v)
 print("ave VSI = ", np.mean(kernel_v))
+print(kernel_h)
 print("ave Haar = ", np.mean(kernel_h))
