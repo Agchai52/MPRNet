@@ -65,8 +65,8 @@ start_time = time.time()
 for file_ in files:
     img = Image.open(file_).convert('RGB')
     img_array = np.asarray(img)
-    #_, blur_array, _ = np.split(img_array, 3, axis=1)
-    blur_array, _ = np.split(img_array, 2, axis=1)
+    _, blur_array, _ = np.split(img_array, 3, axis=1) # GOPRONB
+    # blur_array, _ = np.split(img_array, 2, axis=1) # GOPRO
     blur = Image.fromarray(np.uint8(blur_array))
     input_ = TF.to_tensor(blur).unsqueeze(0).cuda()
 
