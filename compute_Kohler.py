@@ -10,8 +10,8 @@ from PIL import Image
 from skimage.metrics import structural_similarity as ssim
 from skimage.metrics import peak_signal_noise_ratio as psnr
 
-deblu_root = './res_kohler2/'
-sharp_root = './datasets/Kohler_multi2/'
+deblu_root = './res_kohler3/'
+sharp_root = './datasets/Kohler_multi3/'
 
 deblu_list = os.listdir(deblu_root)
 sharp_list = os.listdir(sharp_root)
