@@ -45,7 +45,7 @@ sample_img_names = set(["010221", "024071", "033451", "051271", "060201",
                          "070041", "090541", "100841", "101031", "113201"])
 
 for n, item in enumerate(sharp_list):
-    if not item.startswith('.'):
+    if True:
 
         name_sharp = item[-6:]
         name_deblu = 'test_' + name_sharp + '_blur_err.png'
