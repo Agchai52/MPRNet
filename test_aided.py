@@ -16,7 +16,7 @@ import numpy as np
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
 parser.add_argument('--input_dir', default='./datasets/test_poisson/', type=str, help='Input images')
-parser.add_argument('--result_dir', default='./result_aided/', type=str, help='Directory for results')
+parser.add_argument('--result_dir', default='./test_aided/', type=str, help='Directory for results')
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
