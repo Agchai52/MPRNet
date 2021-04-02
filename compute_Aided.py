@@ -48,7 +48,7 @@ for n, item in enumerate(sharp_list):
     if True:
 
         name_sharp = item[-6:]
-        name_deblu = 'test_' + name_sharp + '_blur_err.png'
+        name_deblu = name_sharp + '_blur_err.png'
 
         path_deblu = os.path.join(deblu_root, name_deblu)
         path_sharp = item + '_ref.png'
