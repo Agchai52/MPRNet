@@ -78,8 +78,8 @@ for n, item in enumerate(sharp_list):
         ssim_n = ssim(img_deblu / 255, img_sharp / 255, gaussian_weights=True, multichannel=True,
                       use_sample_covariance=False, sigma=1.5)
 
-        if name_sharp[-7:-4] == "001":
-            print(name_sharp, (psnr_n, ssim_n))
+        if item[-3:] == '001' or name_sharp in sample_img_names:
+            print("Test Image {}, PSNR = {}, SSIM = {}".format(name_sharp, psnr_n, ssim_n))
 
         sharp = Image.fromarray(np.uint8(img_sharp))
         deblu = Image.fromarray(np.uint8(img_deblu))
