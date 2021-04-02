@@ -48,15 +48,13 @@ for n, item in enumerate(sharp_list):
     if True:
 
         name_sharp = item[-6:]
-        name_deblu = name_sharp + '_blur_err.png'
+        name_deblu = name_sharp + '.png'
 
         path_deblu = os.path.join(deblu_root, name_deblu)
         path_sharp = item + '_ref.png'
 
         img_deblu = cv2.imread(path_deblu, cv2.IMREAD_COLOR).astype(np.float)
         img_sharp = cv2.imread(path_sharp, cv2.IMREAD_COLOR).astype(np.float)
-
-        _, _, img_sharp = np.split(img_sharp, 3, axis=1)
 
         # cv2.imwrite('img_blur.png', img_blur)
         #cv2.imwrite('img_deblu.png', img_deblu)
