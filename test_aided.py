@@ -102,6 +102,7 @@ for file_ in files:
     # For real images only
     file_ = "./dataset" + file_[1:] + '.png'
     img = Image.open(file_).convert('RGB')
+    img = img.resize((720, 720))
     input_ = TF.to_tensor(img).unsqueeze(0).cuda()
 
     # Pad the input if not_multiple_of 8
