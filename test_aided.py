@@ -48,7 +48,9 @@ os.makedirs(out_dir, exist_ok=True)
 #                 + glob(os.path.join(inp_dir, '*.PNG')))
 
 # For nonBlind only
-f_test = open("./dataset/AidedDeblur/test_instance_names.txt", "r")
+# f_test = open("./dataset/AidedDeblur/test_instance_names.txt", "r")
+# For nonBlind real images only
+f_test = open("./dataset/real_images/real_images_names.txt", "r")
 imgsName = f_test.readlines()
 imgsName = [line.rstrip() for line in imgsName]
 f_test.close()
