@@ -26,7 +26,7 @@ parser.add_argument('--input_dir', default='./Datasets/', type=str, help='Direct
 parser.add_argument('--result_dir', default='./results/', type=str, help='Directory for results')
 parser.add_argument('--weights', default='./pretrained_models/model_deblurring.pth', type=str, help='Path to weights')
 parser.add_argument('--dataset', default='GoPro', type=str, help='Test Dataset') # ['GoPro', 'HIDE', 'RealBlur_J', 'RealBlur_R']
-parser.add_argument('--gpus', default='0', type=str, help='CUDA_VISIBLE_DEVICES')
+parser.add_argument('--gpus', default='2', type=str, help='CUDA_VISIBLE_DEVICES')
 
 args = parser.parse_args()
 

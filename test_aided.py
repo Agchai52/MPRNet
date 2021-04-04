@@ -20,7 +20,7 @@ parser.add_argument('--result_dir', default='./test_aided/', type=str, help='Dir
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
-os.environ["CUDA_VISIBLE_DEVICES"] = "2"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
 
 def save_img(filepath, img):
     cv2.imwrite(filepath,cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
