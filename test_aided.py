@@ -42,7 +42,7 @@ def get_gpu_memory_map():
     gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory))
     return gpu_memory_map
 
-print get_gpu_memory_map()
+print(get_gpu_memory_map())
 
 def save_img(filepath, img):
     cv2.imwrite(filepath,cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
