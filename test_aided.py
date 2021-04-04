@@ -13,7 +13,7 @@ from glob import glob
 import cv2
 import argparse
 import numpy as np
-import torch.cuda as cutorch
+import subprocess
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
 parser.add_argument('--input_dir', default='./datasets/test_poisson/', type=str, help='Input images')
@@ -23,8 +23,26 @@ parser.add_argument('--task', default='Deblurring', type=str, help='Task to run'
 args = parser.parse_args()
 os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3"
 
-for i in range(cutorch.device_count()):
-     print("Usage of GPU {} is: {}".format(i, cutorch.getMemoryUsage(i)))
+def get_gpu_memory_map():
+    """Get the current gpu usage.
+
+    Returns
+    -------
+    usage: dict
+        Keys are device ids as integers.
+        Values are memory usage as integers in MB.
+    """
+    result = subprocess.check_output(
+        [
+            'nvidia-smi', '--query-gpu=memory.used',
+            '--format=csv,nounits,noheader'
+        ])
+    # Convert lines into a dictionary
+    gpu_memory = [int(x) for x in result.strip().split('\n')]
+    gpu_memory_map = dict(zip(range(len(gpu_memory)), gpu_memory))
+    return gpu_memory_map
+
+print get_gpu_memory_map()
 
 def save_img(filepath, img):
     cv2.imwrite(filepath,cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
