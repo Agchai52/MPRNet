@@ -74,6 +74,7 @@ start_time = time.time()
 for file_ in files:
     # For NonBLind Only
     # file_ = file_ + '_blur_err.png'
+    file_ = file_ + '.png'
     img = Image.open(file_).convert('RGB')
     input_ = TF.to_tensor(img).unsqueeze(0).cuda()
 
