@@ -75,7 +75,7 @@ for file_ in files:
     # For NonBLind Only
     # file_ = file_ + '_blur_err.png'
     # For real images only
-    file_ = "./dataset" + file_ + '.png'
+    file_ = "./dataset" + file_[1:] + '.png'
     img = Image.open(file_).convert('RGB')
     input_ = TF.to_tensor(img).unsqueeze(0).cuda()
 
