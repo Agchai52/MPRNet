@@ -13,6 +13,7 @@ from glob import glob
 import cv2
 import argparse
 import numpy as np
+import torch.cuda as cutorch
 
 parser = argparse.ArgumentParser(description='Demo MPRNet')
 parser.add_argument('--input_dir', default='./datasets/test_poisson/', type=str, help='Input images')
@@ -20,7 +21,10 @@ parser.add_argument('--result_dir', default='./test_aided/', type=str, help='Dir
 parser.add_argument('--task', default='Deblurring', type=str, help='Task to run', choices=['Deblurring', 'Denoising', 'Deraining'])
 
 args = parser.parse_args()
-os.environ["CUDA_VISIBLE_DEVICES"] = "2, 3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0, 1, 2, 3"
+
+for i in range(cutorch.device_count()):
+     print("Usage of GPU {} is: {}".format(i, cutorch.getMemoryUsage(i)))
 
 def save_img(filepath, img):
     cv2.imwrite(filepath,cv2.cvtColor(img, cv2.COLOR_RGB2BGR))
