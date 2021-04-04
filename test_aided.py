@@ -73,7 +73,8 @@ start_time = time.time()
 
 for file_ in files:
     # For NonBLind Only
-    img = Image.open(file_+'_blur_err.png').convert('RGB')
+    # file_ = file_ + '_blur_err.png'
+    img = Image.open(file_).convert('RGB')
     input_ = TF.to_tensor(img).unsqueeze(0).cuda()
 
     # Pad the input if not_multiple_of 8
